@@ -21,10 +21,13 @@
                 </div>
             </div>
             <div>
+                <div>
+                    <input type="button" value="Escolha entre cifrar e decifrar" id="idBotão">
+                </div>
                 <input type="text" id="idCifra" name="nmCifra">
             </div>
         </div>
-        
+
         <div>
             <output></output>
         </div>
@@ -55,6 +58,25 @@
                 }
                 cifraNum = cifra
             }
+
+            // Código para alterar botão
+            var inputCifrar = document.querySelector("#idCifrar")
+
+            inputCifrar.addEventListener("click", tratamentoInputCifrar)
+
+            function tratamentoInputCifrar() {
+                document.querySelector("#idBotão").value = "Crifrar"
+            }
+
+            var inputDecifrar = document.querySelector("#idDecifrar")
+
+            inputDecifrar.addEventListener("click", tratamentoInputDecifrar)
+
+            function tratamentoInputDecifrar() {
+                document.querySelector("#idBotão").value = "Decrifrar"
+            }
+
+            // Código funcionar botão
         </script>
     </body>
 </html>
