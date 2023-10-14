@@ -21,19 +21,19 @@
                 </div>
             </div>
             <div>
-                <div>
-                    <input type="button" value="Escolha entre cifrar e decifrar" id="idBotão">
-                </div>
                 <input type="text" id="idCifra" name="nmCifra">
             </div>
         </div>
 
         <div>
-            <output></output>
+            <div>
+                <input type="button" value="Escolha entre cifrar e decifrar" id="idBotão">
+            </div>
+            <output id="idOut"></output>
         </div>
 
         <script>
-            const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 'k', "l", "m", "n", "o", "p", 'q', "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+            const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 'k', "l", "m", "n", "o", "p", 'q', "r", "s", "t", "u", "v", "w", "x", "y", "z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 'k', "l", "m", "n", "o", "p", 'q', "r", "s", "t", "u", "v", "w", "x", "y", "z"]
             const números = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
             var cifraNum = 0
             
@@ -65,7 +65,7 @@
             inputCifrar.addEventListener("click", tratamentoInputCifrar)
 
             function tratamentoInputCifrar() {
-                document.querySelector("#idBotão").value = "Crifrar"
+                document.querySelector("#idBotão").value = "Cifrar"
             }
 
             var inputDecifrar = document.querySelector("#idDecifrar")
@@ -73,10 +73,63 @@
             inputDecifrar.addEventListener("click", tratamentoInputDecifrar)
 
             function tratamentoInputDecifrar() {
-                document.querySelector("#idBotão").value = "Decrifrar"
+                document.querySelector("#idBotão").value = "Decifrar"
             }
 
             // Código funcionar botão
+            var inputBotão = document.querySelector("#idBotão")
+
+            inputBotão.addEventListener("click", tratamentoInputBotão)
+            
+            function tratamentoInputBotão() {
+                let valorBotão = document.querySelector("#idBotão").value
+                let texto = document.querySelector("#idFrase").value
+                let letraEncontrada
+                let novoTexto = ""
+                if (valorBotão == "Cifrar") {
+                    for (let i = 0; i < texto.length; i++) {
+                        if (/[A-Z]/.test(texto)) {
+                            texto = texto.toLowerCase()
+                        }
+
+                        if (texto[i] == " ") {
+                                letraEncontrada = " "
+                                novoTexto += letraEncontrada
+                        } 
+                        
+                        else for (let a = 0; a < 26; a++) {
+                            if (texto[i] == alfabeto[a]) {
+                                letraEncontrada = alfabeto[a + Number(cifraNum)]
+                                letraEncontrada = letraEncontrada.toUpperCase()
+                                novoTexto += letraEncontrada
+                            }
+                        }
+                    }
+                }
+
+                else if (valorBotão == "Decifrar") {
+                    for (let i = 0; i < texto.length; i++) {
+                        if (/[A-Z]/.test(texto)) {
+                            texto = texto.toLowerCase()
+                        }
+
+                        if (texto[i] == " ") {
+                                letraEncontrada = " "
+                                novoTexto += letraEncontrada
+                        } 
+                        
+                        else for (let a = 26; a < alfabeto.length; a++) {
+                            if (texto[i] == alfabeto[a]) {
+                                letraEncontrada = alfabeto[a - Number(cifraNum)]
+                                letraEncontrada = letraEncontrada.toUpperCase()
+                                novoTexto += letraEncontrada
+                            }
+                        }
+                    }
+                }
+                document.querySelector("#idOut").innerText = novoTexto
+            }
+                        
         </script>
     </body>
 </html>
