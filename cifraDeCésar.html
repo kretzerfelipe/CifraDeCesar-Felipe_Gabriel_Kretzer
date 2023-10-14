@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <div>
+                <textarea name="nmFrase" id="idFrase" cols="40" rows="5"></textarea>
+            </div>
+            <div>
+                <div>
+                    <input type="radio" id="idCifrar" name="nmCifrarDecifrar">
+                    <label for="idCifrar">Cifrar</label>
+                </div>
+                <div>
+                    <input type="radio" id="idDecifrar" name="nmCifrarDecifrar">
+                    <label for="idDecifrar">Decifrar</label>
+                </div>
+            </div>
+            <div>
+                <input type="text" id="idCifra" name="nmCifra">
+            </div>
+        </div>
+        
+        <div>
+            <output></output>
+        </div>
+
+        <script>
+            const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 'k', "l", "m", "n", "o", "p", 'q', "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+            const números = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+            var cifraNum = 0
+            
+            //Código para deixar a cifra em número  
+            var inputCifra = document.querySelector("#idCifra")
+
+            inputCifra.addEventListener("input", tratamentoInputCifra)
+
+            function tratamentoInputCifra() {
+                let cifra = document.querySelector("#idCifra").value 
+                if (cifra.length > 1) {
+                    alert("A cifra só pode conter um número ou letra")
+                    document.querySelector("#idCifra").value = ""
+                }
+                if (/[A-Z]/.test(cifra)) {
+                    cifra = cifra.toLowerCase()
+                }
+                for (let i = 0; i < alfabeto.length; i++) {
+                    if (alfabeto[i] == cifra) {
+                        cifra = números[i]
+                    }
+                }
+                cifraNum = cifra
+            }
+        </script>
+    </body>
+</html>
