@@ -4,32 +4,106 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-    </head>
-    <body>
-        <div>
-            <div>
-                <textarea name="nmFrase" id="idFrase" cols="40" rows="5"></textarea>
-            </div>
-            <div>
-                <div>
-                    <input type="radio" id="idCifrar" name="nmCifrarDecifrar">
-                    <label for="idCifrar">Cifrar</label>
-                </div>
-                <div>
-                    <input type="radio" id="idDecifrar" name="nmCifrarDecifrar">
-                    <label for="idDecifrar">Decifrar</label>
-                </div>
-            </div>
-            <div>
-                <input type="text" id="idCifra" name="nmCifra">
-            </div>
-        </div>
 
-        <div>
-            <div>
-                <input type="button" value="Escolha entre cifrar e decifrar" id="idBotão">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+            
+            .corDeFundo {
+                background-color: rgb(26, 26, 26);
+            }
+            
+            .central {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .card {
+                border-radius: 10%;
+                box-shadow: 0 0 10px 10px rgb(182, 182, 182);
+                background-color: rgb(70, 70, 70);
+                text-align: center;
+                padding: 5%;
+                padding-top: 2%;
+                padding-bottom: 1%;
+            }
+        
+            .text {
+                color: rgb(193, 193, 193);
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 1.5rem;
+            }
+        
+            .textSenha {
+                color: rgb(0, 0, 0);
+                font-family: 'Ubuntu', sans-serif;
+            }
+        
+            .textTítulo {
+                color: rgb(255, 255, 255);
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 3rem;
+                margin: 5%
+            }
+        
+            .textoEBotão {
+                background-color: rgb(70, 70, 70);
+                color: rgb(193, 193, 193);
+                font-family: 'Ubuntu', sans-serif;
+                padding: 1%;
+                border: 2px solid rgb(182, 182, 182);
+                border-radius: 10px;
+                font-size: 1.2rem;
+                margin: 1%;
+            }
+        
+            .textoEBotão:hover {
+                transform: scale(1.02);
+            }
+        
+            .radio {
+                appearance: none;
+                width: 5%;
+                height: 20px;
+                border: 2px solid rgb(182, 182, 182);
+                border-radius: 50%;
+                background-color: rgb(70, 70, 70);
+                cursor: pointer;
+            }
+        
+            .radio:checked {
+                background-color: rgb(182, 182, 182);
+            }
+        </style>
+    </head>
+    <body class="corDeFundo">
+        <div class="central">
+            <div class="card">
+                <div>
+                    <p class="textTítulo">CIFRA DE CÉSAR</p>
+                </div>
+                <div>
+                    <div>
+                        <textarea name="nmFrase" id="idFrase" cols="40" rows="5" class="textoEBotão"></textarea>
+                    </div>
+                    <div>
+                        <input type="radio" id="idCifrar" name="nmCifrarDecifrar" class="radio">
+                        <label for="idCifrar" class="text">Cifrar</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="idDecifrar" name="nmCifrarDecifrar" class="radio">
+                        <label for="idDecifrar" class="text">Decifrar</label>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" id="idCifra" name="nmCifra" class="textoEBotão">
+                </div>
+            
+                <div>
+                    <input type="button" value="Escolha entre cifrar e decifrar" id="idBotão" class="textoEBotão">
+                </div>
+                <output id="idOut" class="text"></output>
             </div>
-            <output id="idOut"></output>
         </div>
 
         <script>
