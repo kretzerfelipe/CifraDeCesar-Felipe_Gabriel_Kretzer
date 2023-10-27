@@ -33,6 +33,12 @@
                 font-family: 'Ubuntu', sans-serif;
                 font-size: 1.5rem;
             }
+
+            .textOut {
+                color: rgb(193, 193, 193);
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 0.75rem;
+            }
         
             .textSenha {
                 color: rgb(0, 0, 0);
@@ -102,7 +108,7 @@
                 <div>
                     <input type="button" value="Escolha entre cifrar e decifrar" id="idBotão" class="textoEBotão">
                 </div>
-                <output id="idOut" class="text"></output>
+                <output id="idOut" class="textOut"></output>
             </div>
         </div>
 
@@ -160,48 +166,60 @@
                 let texto = document.querySelector("#idFrase").value
                 let letraEncontrada
                 let novoTexto = ""
+
                 if (valorBotão == "Cifrar") {
                     for (let i = 0; i < texto.length; i++) {
                         if (/[A-Z]/.test(texto)) {
                             texto = texto.toLowerCase()
                         }
 
-                        if (texto[i] == " ") {
-                                letraEncontrada = " "
-                                novoTexto += letraEncontrada
-                        } 
                         
-                        else for (let a = 0; a < 26; a++) {
-                            if (texto[i] == alfabeto[a]) {
-                                letraEncontrada = alfabeto[a + Number(cifraNum)]
-                                letraEncontrada = letraEncontrada.toUpperCase()
-                                novoTexto += letraEncontrada
+                        if (/[a-z]/.test(texto[i])) {
+                            for (let a = 0; a < 26; a++) {
+                                if (texto[i] == alfabeto[a]) {
+                                    letraEncontrada = alfabeto[a + Number(cifraNum)]
+                                    letraEncontrada = letraEncontrada.toUpperCase()
+                                    novoTexto += letraEncontrada
+                                }
                             }
                         }
+                        else {
+                                letraEncontrada = texto[i]
+                                novoTexto += letraEncontrada.toUpperCase()
+                        } 
                     }
                 }
 
-                else if (valorBotão == "Decifrar") {
+                if (valorBotão == "Decifrar") {
                     for (let i = 0; i < texto.length; i++) {
                         if (/[A-Z]/.test(texto)) {
                             texto = texto.toLowerCase()
                         }
 
-                        if (texto[i] == " ") {
-                                letraEncontrada = " "
-                                novoTexto += letraEncontrada
-                        } 
                         
-                        else for (let a = 26; a < alfabeto.length; a++) {
-                            if (texto[i] == alfabeto[a]) {
+                        if (/[a-z]/.test(texto[i])) {
+                            for (let a = 27; a < alfabeto.length; a++) {
+                                if (texto[i] == alfabeto[a]) {
                                 letraEncontrada = alfabeto[a - Number(cifraNum)]
                                 letraEncontrada = letraEncontrada.toUpperCase()
                                 novoTexto += letraEncontrada
                             }
+                            }
                         }
+                        else {
+                                letraEncontrada = texto[i]
+                                novoTexto += letraEncontrada.toUpperCase()
+                        } 
                     }
                 }
-                document.querySelector("#idOut").innerText = novoTexto
+                
+                // Dividir o texto em linhas
+                var linhas = [];
+                for (let i = 0; i < novoTexto.length; i += 50) {
+                    linhas.push(novoTexto.slice(i, i + 50));
+                    console.log(linhas);
+                }
+                document.querySelector("#idOut").innerText = linhas.join("\n");
             }
                         
         </script>
